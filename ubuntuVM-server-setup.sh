@@ -1,6 +1,5 @@
 #!/bin/bash
 
-numservers=2
 countservers=1
 
 while [ $countservers -le $numservers ]
