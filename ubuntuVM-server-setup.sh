@@ -2,7 +2,7 @@
 
 countservers=1
 
-while [ $countservers -le $numservers ]
+while [ $countservers -le $1 ]
 do
     #Create and Register a Virtual Machine
     sh VBoxManage createvm --name ubuntu-server$countservers --ostype Ubuntu_64 --register
@@ -35,7 +35,7 @@ do
     sh VBoxManage modifyvm ubuntu-server$countservers --nic1 nat
 
     #Virtual Machine Unattended Installation
-    sh VBoxManage unattended install ubuntu-server$countservers --user=<user> --password=<password> --country=DK --time-zone=CEST --hostname=server01.example.com --iso=./ubuntu-18.04.3-live-server-amd64.iso --start-vm=gui
+    sh VBoxManage unattended install ubuntu-server$countservers --user=mem --password=password --country=DK --time-zone=CEST --hostname=server$countservers.example.com --iso=./ubuntu-18.04.3-live-server-amd64.iso --start-vm=headless
 
-    ((count++))
+    ((countservers++))
 done
